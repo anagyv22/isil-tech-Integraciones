@@ -12,6 +12,7 @@
     <title>Student</title>
 </head>
 <body>
+
 <div class="container">
 
     <h3>Lista de estudiantes</h3>
@@ -31,6 +32,7 @@
                     <th scope="col">lastNameFather</th>
                     <th scope="col">lastNameMother</th>
                     <th scope="col">birthDate</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,6 +43,12 @@
                     <td th:text="${student.lastNameFather}"></td>
                     <td th:text="${student.lastNameMother}"></td>
                     <td th:text="${student.birthDate}"></td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <a th:href="@{/students/edit/{documentNumber} (documentNumber = ${student.documentNumber}) }" class="btn btn-warning btn-sm" >Edit</a>
+                            <a th:href="@{/students/delete/{documentNumber} (documentNumber = ${student.documentNumber}) }" class="btn btn-danger btn-sm" >Delete</a>
+                        </div>
+                    </td>
 
                 </tr>
 

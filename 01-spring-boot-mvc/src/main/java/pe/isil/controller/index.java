@@ -8,7 +8,8 @@ public class index {
 
     @GetMapping({"/", "/index"})
     public String index(){
-        return "index";
+        return "redirect:/students";
+
     }
 
 }

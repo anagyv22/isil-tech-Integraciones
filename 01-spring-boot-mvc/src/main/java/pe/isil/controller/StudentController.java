@@ -1,9 +1,9 @@
 package pe.isil.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pe.isil.model.Student;
 import pe.isil.service.StudentService;
@@ -44,6 +44,33 @@ public class StudentController {
         return "redirect:/students";
     }
 
+    @GetMapping("/students/edit/{documentNumber}")
+    public String studentEdit(@PathVariable String documentNumber, Model model){
+
+        Student currentStudent = studentService.findByDocumentNumber(documentNumber);
+
+        model.addAttribute("currentStudent", currentStudent);
+
+        return "student-edit";
+    }
+
+    @PostMapping("/students/update")
+    public String studentUpdate(Student student){
+
+        studentService.updateStudent(student);
+
+        return "redirect:/students";
+    }
+
+    @GetMapping("/students/delete/{documentNumber}")
+    public String studentDelete(@PathVariable String documentNumber){
+
+        Student currentStudent = studentService.findByDocumentNumber(documentNumber);
+        if (currentStudent != null)
+            studentService.removeStudent(currentStudent);
+
+        return "redirect:/students";
+    }
 
 
 }
